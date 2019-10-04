@@ -1,5 +1,8 @@
 trigger:
-  - master
+  tags:
+    include:
+    - v2.*
+
 
 #schedules:
 #  - cron: "18 * * * *"
