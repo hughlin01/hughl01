@@ -12,6 +12,7 @@ trigger:
 #        - master
 #    always: true
 #
+#
 
 schedules:
   - cron: "18 * * * *"
