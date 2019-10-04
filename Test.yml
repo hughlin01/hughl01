@@ -1,7 +1,7 @@
 trigger:
   tags:
     include:
-    - v2.*
+    - ['v2.*']
 
 
 #schedules:
