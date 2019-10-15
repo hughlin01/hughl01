@@ -1,33 +1,23 @@
 trigger:
-  branches:
-    include:
-     - refs/tags/v*
-    
-  tags:
-    include: ['*'] 
-  
-     
-
-
-#schedules:
-#  - cron: "18 * * * *"
-#    displayName: Daily Check each 30 min
-#    branches:
-#      include:
-#        - master
-#    always: true
-
-
-
+- master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    zipAfterPublish: true
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'    
