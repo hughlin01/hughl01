@@ -1,5 +1,13 @@
 trigger:
-  - master
+  branches:
+    include:
+     - refs/tags/v*
+    
+  tags:
+    include: ['*'] 
+  
+     
+
 
 #schedules:
 #  - cron: "18 * * * *"
@@ -9,15 +17,8 @@ trigger:
 #        - master
 #    always: true
 
-schedules:
-  - cron: "18 * * * *"
-    displayName: Daily Check each 30 min
-    branches:
-      include:
-        - master
-    always: true
 
-#edit
+
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -30,3 +31,5 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+#
